@@ -5,10 +5,13 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a person's remark in the address book.
+ * Guarantees: immutable.
  */
 public class Remark {
-    /** The remark value. */
-    public String value;
+    /**
+     * The remark value.
+     */
+    public final String value;
 
     /**
      * Constructs a {@code Remark} with the given value.
