@@ -12,6 +12,9 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
 
+/**
+ * Adds or updates a remark for an existing person in the address book.
+ */
 public class RemarkCommand extends Command {
     public static final String COMMAND_WORD = "remark";
 
@@ -32,6 +35,13 @@ public class RemarkCommand extends Command {
     private final Index index;
     private final Remark remark;
 
+    /**
+     * Creates a RemarkCommand to add or update the remark of the specified {@code Person}.
+     *
+     * @param index   The index of the person in the filtered person list to edit the remark.
+     * @param message The new remark to be set for the person.
+     * @throws NullPointerException if {@code index} or {@code message} is null.
+     */
     public RemarkCommand(Index index, Remark message) {
         requireAllNonNull(index, message);
 
@@ -39,6 +49,13 @@ public class RemarkCommand extends Command {
         this.remark = message;
     }
 
+    /**
+     * Executes the remark command to add or update a person's remark.
+     *
+     * @param model The current model containing the person list.
+     * @return The command result containing a success message.
+     * @throws CommandException If the index is invalid or the person cannot be found.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
@@ -68,6 +85,12 @@ public class RemarkCommand extends Command {
         return String.format(message, Messages.format(personToEdit));
     }
 
+    /**
+     * Checks if this RemarkCommand is equal to another object.
+     *
+     * @param other The object to compare with.
+     * @return True if the other object is the same as this command or has the same index and remark, false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
